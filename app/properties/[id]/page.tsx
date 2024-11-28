@@ -26,8 +26,9 @@ const DynamicMap = dynamic(
 async function PropertyDetailsPage({ params }: { params: { id: string } }) {
   const property = await fetchPropertyDetails(params.id);
   if (!property) redirect("/");
-  const { baths, bedrooms, beds, guests } = property;
-  const details = { baths, bedrooms, beds, guests };
+
+  const { colors, sizes, types } = property;
+  const details = { colors, sizes, types };
 
   const firstName = property.profile.firstName;
   const profileImage = property.profile.profileImage;
@@ -55,7 +56,7 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
           <Separator className="mt-4" />
           <Description description={property.description} />
           <Amenities amenities={property.amenities} />
-          <DynamicMap countryCode={property.country} />
+          <DynamicMap country={property.country} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/* calendar */}

@@ -193,6 +193,7 @@ export const fetchProperties = async ({
       country: true,
       image: true,
       price: true,
+      discount: true,
     },
   });
   return properties;
@@ -200,22 +201,22 @@ export const fetchProperties = async ({
 
 // Fetch Favorite ID
 export const fetchFavoriteId = async ({
-    propertyId,
-  }: {
-    propertyId: string;
-  }) => {
-    const user = await getAuthUser();
-    const favorite = await db.favorite.findFirst({
-      where: {
-        propertyId,
-        profileId: user.id,
-      },
-      select: {
-        id: true,
-      },
-    });
-    return favorite?.id || null;
-  };
+  propertyId,
+}: {
+  propertyId: string;
+}) => {
+  const user = await getAuthUser();
+  const favorite = await db.favorite.findFirst({
+    where: {
+      propertyId,
+      profileId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return favorite?.id || null;
+};
 
 //   Fetch Favorites
 export const fetchFavorites = async () => {
@@ -231,6 +232,7 @@ export const fetchFavorites = async () => {
           name: true,
           tagline: true,
           price: true,
+          discount:true,
           country: true,
           image: true,
         },
@@ -272,12 +274,12 @@ export const toggleFavoriteAction = async (prevState: {
 
 // fetch Property Details
 export const fetchPropertyDetails = (id: string) => {
-    return db.property.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        profile: true,
-      },
-    });
-  };
+  return db.property.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      profile: true,
+    },
+  });
+};

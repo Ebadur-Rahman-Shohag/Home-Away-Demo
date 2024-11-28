@@ -9,6 +9,7 @@ import CountriesInput from "@/components/form/CountriesInput";
 import ImageInput from "@/components/form/ImageInput";
 import CounterInput from "@/components/form/CounterInput";
 import AmenitiesInput from "@/components/form/AmenitiesInput";
+import DiscountInput from "@/components/form/DiscountInput";
 
 function CreateProperty() {
   return (
@@ -24,7 +25,7 @@ function CreateProperty() {
               name="name"
               type="text"
               label="Name (20 limit)"
-              defaultValue="Cabin in Latvia"
+              defaultValue="Shirt"
             />
             <FormInput
               name="tagline"
@@ -34,6 +35,8 @@ function CreateProperty() {
             />
             {/* price */}
             <PriceInput />
+            {/* discount */}
+            <DiscountInput />
             {/* categories */}
             <CategoriesInput />
           </div>
@@ -42,17 +45,24 @@ function CreateProperty() {
             name="description"
             labelText="Description (10 - 1000 Words)"
           />
+          {/* Countries */}
           <div className="grid sm:grid-cols-2 gap-8 mt-4">
-            <CountriesInput />
+            {/* <CountriesInput /> */}
+            <FormInput
+              name="country"
+              type="text"
+              label="Location (20 limit)"
+              defaultValue="Dhaka"
+            />
             <ImageInput />
           </div>
           <h3 className="text-lg mt-8 mb-4 font-medium">
             Accommodation Details
           </h3>
-          <CounterInput detail="guests" />
-          <CounterInput detail="bedrooms" />
-          <CounterInput detail="beds" />
-          <CounterInput detail="baths" />
+          {/* Counter */}
+          <CounterInput detail="colors" />
+          <CounterInput detail="sizes" />
+          <CounterInput detail="types" />
           <h3 className="text-lg mt-10 mb-6 font-medium">Amenities</h3>
           <AmenitiesInput />
           <SubmitButton text="create rental" className="mt-12" />
