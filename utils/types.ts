@@ -12,3 +12,7 @@ export type PropertyCardProps = {
   price: number;
   discount: number;
 };
+
+export type Booking = {
+  amount: number;
+};

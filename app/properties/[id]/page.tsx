@@ -10,18 +10,26 @@ import UserInfo from "@/components/properties/UserInfo";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchPropertyDetails } from "@/utils/actions";
 import { Separator } from "@radix-ui/react-dropdown-menu";
-import Description from "@/components/properties/Description"
+import Description from "@/components/properties/Description";
 import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { any } from "zod";
 
 const DynamicMap = dynamic(
-    () => import("@/components/properties/PropertyMap"),
-    {
-      ssr: false,
-      loading: () => <Skeleton className="h-[400px] w-full" />,
-    }
-  );
+  () => import("@/components/properties/PropertyMap"),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+  }
+);
+
+const DynamicBookingWrapper = dynamic(
+  () => import("@/components/booking/BookingWrapper"),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-[200px] w-full" />,
+  }
+);
 
 async function PropertyDetailsPage({ params }: { params: { id: string } }) {
   const property = await fetchPropertyDetails(params.id);
@@ -60,7 +68,12 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/* calendar */}
-          <BookingCalendar />
+          <DynamicBookingWrapper
+            propertyId={property.id}
+            price={property.price}
+            discount={property.discount}
+          />
+          {/* <BookingCalendar /> */}
         </div>
       </section>
     </section>
