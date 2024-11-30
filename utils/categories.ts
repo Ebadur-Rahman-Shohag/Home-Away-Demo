@@ -11,12 +11,9 @@ export type CategoryLabel =
   | "men"
   | "women"
   | "children"
-  | "shirts"
-  | "pants"
   | "shoes"
-  | "suits"
-  | "ties"
-  | "saree"
+  // | "suits"
+  // | "ties"
   | "hats";
 
 export const categories: Category[] = [
@@ -32,31 +29,19 @@ export const categories: Category[] = [
     label: "children",
     icon: FaChild,
   },
-  {
-    label: "shirts",
-    icon: GiTShirt,
-  },
-  {
-    label: "pants",
-    icon: GiArmoredPants,
-  },
+
   {
     label: "shoes",
     icon: GiRunningShoe ,
   },
-  {
-    label: "suits",
-    icon: GiClothes ,
-  },
-  {
-    label: "ties",
-    icon: GiNecklaceDisplay ,
-  },
-
-  {
-    label: "saree",
-    icon: GiDress ,
-  },
+  // {
+  //   label: "suits",
+  //   icon: GiClothes ,
+  // },
+  // {
+  //   label: "ties",
+  //   icon: GiNecklaceDisplay ,
+  // },
   {
     label: "hats",
     icon: GiSombrero ,
