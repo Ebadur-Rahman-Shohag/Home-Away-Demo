@@ -177,18 +177,31 @@ export const createPropertyAction = async (
 export const fetchProperties = async ({
   search = "",
   category,
+  price,
+
+  priceFilter = true, // Flag to indicate whether to filter by price
 }: {
   search?: string;
   category?: string;
+  price?: number;
+  priceFilter?: boolean; // New optional parameter
 }) => {
+  const whereConditions: any = {
+    ...(category && { category }),
+    OR: [
+      { name: { contains: search, mode: "insensitive" } },
+      { tagline: { contains: search, mode: "insensitive" } },
+      { country: { contains: search, mode: "insensitive" } },
+    ],
+  };
+
+  // Conditionally include price filtering
+  if (priceFilter && price !== undefined) {
+    whereConditions.price = { gte: price }; // Adjust as necessary
+  }
+
   const properties = await db.property.findMany({
-    where: {
-      category,
-      OR: [
-        { name: { contains: search, mode: "insensitive" } },
-        { tagline: { contains: search, mode: "insensitive" } },
-      ],
-    },
+    where: whereConditions,
     select: {
       id: true,
       name: true,
@@ -198,10 +211,13 @@ export const fetchProperties = async ({
       price: true,
       discount: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
+
   return properties;
 };
-
 // Fetch Favorite ID
 export const fetchFavoriteId = async ({
   propertyId,
@@ -413,13 +429,11 @@ export async function fetchPropertyRating(propertyId: string) {
   };
 }
 
-
 // create booking action
 export const createBookingAction = async (prevState: {
   propertyId: string;
   amount: number;
 }) => {
-
   let bookingId: null | string = null;
 
   const user = await getAuthUser();
@@ -680,7 +694,6 @@ export const fetchReservations = async () => {
   });
   return reservations;
 };
-
 
 export const fetchReservationStats = async () => {
   const user = await getAuthUser();
