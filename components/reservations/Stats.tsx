@@ -1,4 +1,4 @@
-import StatsCards from "@/app/admin/StatsCard";
+import StatsCards from "../admin/StatsCard";
 import { fetchReservationStats } from "@/utils/actions";
 import { formatCurrency } from "@/utils/format";
 async function Stats() {
