@@ -381,7 +381,7 @@ export const fetchRentals = async () => {
       id: true,
       name: true,
       price: true,
-      discount:true,
+      discount: true,
     },
   });
 
@@ -450,7 +450,6 @@ export const fetchRentalDetails = async (propertyId: string) => {
   });
 };
 
-
 // update property Action
 export const updatePropertyAction = async (
   prevState: any,
@@ -506,4 +505,34 @@ export const updatePropertyImageAction = async (
   } catch (error) {
     return renderError(error);
   }
+};
+
+// fetch reservations
+export const fetchReservations = async () => {
+  const user = await getAuthUser();
+
+  const reservations = await db.booking.findMany({
+    where: {
+      property: {
+        profileId: user.id,
+      },
+    },
+
+    orderBy: {
+      createdAt: "desc", // or 'asc' for ascending order
+    },
+
+    include: {
+      property: {
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          discount: true,
+          country: true,
+        },
+      }, // include property details in the result
+    },
+  });
+  return reservations;
 };
