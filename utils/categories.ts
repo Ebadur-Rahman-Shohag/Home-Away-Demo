@@ -1,6 +1,13 @@
 import { IconType } from "react-icons";
-import { FaMale,FaFemale,FaChild  } from "react-icons/fa";
-import { GiTShirt,GiArmoredPants,GiRunningShoe,GiClothes,GiNecklaceDisplay,GiDress,GiSombrero    } from "react-icons/gi";
+import { 
+  GiTShirt, 
+  GiRunningShoe, 
+  GiModernCity, 
+  GiSmartphone, 
+  GiCircuitry, 
+  GiSofa
+} from "react-icons/gi";
+import { FaChild } from "react-icons/fa";
 
 type Category = {
   label: CategoryLabel;
@@ -8,42 +15,36 @@ type Category = {
 };
 
 export type CategoryLabel =
-  | "men"
-  | "women"
-  | "children"
+  | "clothing"
+  | "children_clothing"
   | "shoes"
-  // | "suits"
-  // | "ties"
-  | "hats";
+  | "gadgets"
+  | "electronics"
+  | "home_decoration";
 
 export const categories: Category[] = [
   {
-    label: "men",
-    icon: FaMale,
+    label: "clothing",
+    icon: GiTShirt,
   },
   {
-    label: "women",
-    icon: FaFemale,
-  },
-  {
-    label: "children",
+    label: "children_clothing",
     icon: FaChild,
   },
-
   {
     label: "shoes",
-    icon: GiRunningShoe ,
+    icon: GiRunningShoe,
   },
-  // {
-  //   label: "suits",
-  //   icon: GiClothes ,
-  // },
-  // {
-  //   label: "ties",
-  //   icon: GiNecklaceDisplay ,
-  // },
   {
-    label: "hats",
-    icon: GiSombrero ,
+    label: "gadgets",
+    icon: GiSmartphone,
+  },
+  {
+    label: "electronics",
+    icon: GiCircuitry,
+  },
+  {
+    label: "home_decoration",
+    icon: GiSofa,
   },
 ];
