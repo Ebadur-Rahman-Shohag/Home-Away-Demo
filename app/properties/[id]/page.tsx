@@ -1,7 +1,6 @@
 import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
 import PropertyRating from "@/components/card/PropertyRating";
 import Amenities from "@/components/properties/Amenities";
-import BookingCalendar from "@/components/properties/BookingCalendar";
 import BreadCrumbs from "@/components/properties/BreadCrumbs";
 import ImageContainer from "@/components/properties/ImageContainer";
 import PropertyDetails from "@/components/properties/PropertyDetails";
@@ -13,7 +12,10 @@ import { Separator } from "@radix-ui/react-dropdown-menu";
 import Description from "@/components/properties/Description";
 import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
-import { any } from "zod";
+import SubmitReview from "@/components/reviews/SubmitReview";
+import PropertyReviews from "@/components/reviews/PropertyReviews";
+import { findExistingReview } from "@/utils/actions";
+import { auth } from "@clerk/nextjs/server";
 
 const DynamicMap = dynamic(
   () => import("@/components/properties/PropertyMap"),
@@ -32,6 +34,8 @@ const DynamicBookingWrapper = dynamic(
 );
 
 async function PropertyDetailsPage({ params }: { params: { id: string } }) {
+
+
   const property = await fetchPropertyDetails(params.id);
   if (!property) redirect("/");
 
@@ -40,6 +44,11 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
 
   const firstName = property.profile.firstName;
   const profileImage = property.profile.profileImage;
+
+  const { userId } = auth();
+  const isNotOwner = property.profile.clerkId !== userId;
+  const reviewDoesNotExist =
+    userId && isNotOwner && !(await findExistingReview(userId, property.id));
 
   return (
     <section>
@@ -76,6 +85,8 @@ async function PropertyDetailsPage({ params }: { params: { id: string } }) {
           {/* <BookingCalendar /> */}
         </div>
       </section>
+      {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}
+      <PropertyReviews propertyId={property.id} />
     </section>
   );
 }
