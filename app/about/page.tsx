@@ -12,7 +12,7 @@ function About() {
         </div>
       </div>
       <p className="mt-6 text-lg leading-8 max-w-2xl mx-auto">
-      Welcome to E-Commerce BestDeal Website! We offer a variety of clothing, electronics, and more at great prices. Our goal is to make shopping easy and enjoyable. Thank you for choosing us!
+      Welcome to E-Commerce BestDeal Website! We offer a variety of clothing, electronics, and more at great prices. Our goal is to make shopping easy and enjoyable. Thank you for choosing us! Shop now and discover amazing deals you don&apos;t want to miss!
       </p>
     </>
   );
