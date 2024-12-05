@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 function About() {
   return (
@@ -8,11 +8,16 @@ function About() {
           We love
         </h1>
         <div>
-          <Button className="text-2xl md:text-4xl p-8 ">E-Commerce BestDeal Website</Button>
+          <Button className="text-xl sm:text-2xl md:text-4xl p-4 md:p-8">
+            E-Commerce BestDeal Website
+          </Button>
         </div>
       </div>
       <p className="mt-6 text-lg leading-8 max-w-2xl mx-auto">
-      Welcome to E-Commerce BestDeal Website! We offer a variety of clothing, electronics, and more at great prices. Our goal is to make shopping easy and enjoyable. Thank you for choosing us! Shop now and discover amazing deals you don&apos;t want to miss!
+        Welcome to E-Commerce BestDeal Website! We offer a variety of clothing,
+        electronics, and more at great prices. Our goal is to make shopping easy
+        and enjoyable. Thank you for choosing us! Shop now and discover amazing
+        deals you don&apos;t want to miss!
       </p>
     </>
   );
