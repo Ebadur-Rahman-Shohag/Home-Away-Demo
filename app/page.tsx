@@ -8,8 +8,7 @@ function HomePage({
 }: {
   searchParams: { category?: string; search?: string; price?: string };
 }) {
-
-    // Convert price to number or default to 0
+  // Convert price to number or default to 0
   const price = searchParams?.price ? Number(searchParams.price) : 0;
   return (
     <section>
@@ -18,7 +17,11 @@ function HomePage({
         search={searchParams?.search}
         price={price}
       />
-      <PriceSearch />
+      <PriceSearch
+        category={searchParams?.category}
+        search={searchParams?.search}
+        price={price}
+      />
       <Suspense fallback={<LoadingCards />}>
         <PropertiesContainer
           category={searchParams?.category}

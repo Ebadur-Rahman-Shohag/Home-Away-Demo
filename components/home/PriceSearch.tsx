@@ -7,7 +7,18 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Slider } from "@/components/ui/slider";
 
-const PriceSearch: React.FC = () => {
+const PriceSearch: React.FC = ({
+  category,
+  search,
+  price,
+}: {
+  category?: string;
+  search?: string;
+  price?: number;
+}) => {
+
+  const searchTerm = search ? `&search=${search}` : "";
+  const categoriesTerm = category ? `&category=${category}` : "";
   const router = useRouter();
   const [rangeValue, setRangeValue] = useState<number>(100); // Default value of 50
 
@@ -17,7 +28,7 @@ const PriceSearch: React.FC = () => {
 
   const handleClick = (): void => {
     // Update the URL when button is clicked
-    router.push(`?price=${rangeValue}`);
+    router.push(`?price=${rangeValue}${categoriesTerm}${searchTerm}`);
   };
 
   return (
