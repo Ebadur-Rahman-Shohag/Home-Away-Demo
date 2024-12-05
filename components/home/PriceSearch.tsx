@@ -2,25 +2,22 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Slider } from "@/components/ui/slider";
 
-const PriceSearch: React.FC = ({
-  category,
-  search,
-  price,
-}: {
+// Define props type for PriceSearch
+interface PriceSearchProps {
   category?: string;
   search?: string;
   price?: number;
-}) => {
+}
 
+const PriceSearch: React.FC<PriceSearchProps> = ({ category, search, price }) => {
   const searchTerm = search ? `&search=${search}` : "";
   const categoriesTerm = category ? `&category=${category}` : "";
   const router = useRouter();
-  const [rangeValue, setRangeValue] = useState<number>(100); // Default value of 50
+  const [rangeValue, setRangeValue] = useState<number>(price || 100); // Default value of 100
 
   const handleRangeChange = (value: number[]) => {
     setRangeValue(value[0]); // Extract the first value from the array and update the state
