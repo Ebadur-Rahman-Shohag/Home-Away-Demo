@@ -8,8 +8,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HomeAway",
-  description: "Feel at home, away from home.",
+  title: "ShopNShare",
+  description: "ShopNShare is a platform for sharing and shopping",
 };
 
 export default function RootLayout({
