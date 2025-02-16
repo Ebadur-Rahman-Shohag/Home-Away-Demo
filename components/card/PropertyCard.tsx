@@ -48,9 +48,9 @@ function PropertyCard({ property }: { property: PropertyCardProps }) {
         <FavoriteToggleButton propertyId={propertyId} />
       </div>
       <div className="absolute top-5 left-5 z-5 text-white">
-        {/* <Badge variant="destructive">
+        <Badge variant="destructive">
           {((discount / price) * 100).toFixed(2)}%OFF
-        </Badge> */}
+        </Badge>
       </div>
     </article>
   );
